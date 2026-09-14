@@ -13,6 +13,7 @@
     "@observablehq/plot": "^0.6.17",
     "@tailwindcss/postcss": "^4.3.3",
     "@tailwindcss/vite": "^4.3.3",
+    "accessible-astro-components": "^5.8.0",
     "astro": "^5.18.2",
     "jsdom": "^30.0.1",
     "postcss": "^8.5.28",

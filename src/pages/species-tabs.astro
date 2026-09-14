@@ -1,0 +1,64 @@
+---
+import { Tabs, TabsList, TabsPanel, TabsTab } from "accessible-astro-components";
+import GraphicSpecies from "../components/GraphicSpecies.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+	<main class="mx-auto flex min-h-full max-w-6xl flex-col gap-8 px-4 py-8">
+		<header class="flex flex-col gap-4">
+			<a class="w-fit text-sm underline" href="/">Retour a l'accueil</a>
+			<h1 class="text-3xl font-bold">Les especes de pingouins</h1>
+		</header>
+
+		<Tabs class="flex flex-col gap-0">
+			<TabsList class="flex flex-wrap gap-2" aria-label="Navigation entre les especes">
+				<TabsTab
+					id="tab-adelie"
+					controls="panel-adelie"
+					selected
+					class="!rounded-md !bg-sky-700 !px-4 !py-2 !font-semibold !text-white aria-selected:!bg-sky-950 hover:!bg-sky-800"
+				>
+					Adelie
+				</TabsTab>
+				<TabsTab
+					id="tab-gentoo"
+					controls="panel-gentoo"
+					class="!rounded-md !bg-sky-700 !px-4 !py-2 !font-semibold !text-white aria-selected:!bg-sky-950 hover:!bg-sky-800"
+				>
+					Gentoo
+				</TabsTab>
+				<TabsTab
+					id="tab-chinstrap"
+					controls="panel-chinstrap"
+					class="!rounded-md !bg-sky-700 !px-4 !py-2 !font-semibold !text-white aria-selected:!bg-sky-950 hover:!bg-sky-800"
+				>
+					Chinstrap
+				</TabsTab>
+			</TabsList>
+
+			<TabsPanel
+				id="panel-adelie"
+				labelledby="tab-adelie"
+				selected
+				class="!flex !min-h-96 !flex-col !gap-4 !rounded-b-lg !border-2 !border-slate-300 !p-6"
+			>
+				<GraphicSpecies species="Adelie" />
+			</TabsPanel>
+			<TabsPanel
+				id="panel-gentoo"
+				labelledby="tab-gentoo"
+				class="!flex !min-h-96 !flex-col !gap-4 !rounded-b-lg !border-2 !border-slate-300 !p-6"
+			>
+				<GraphicSpecies species="Gentoo" />
+			</TabsPanel>
+			<TabsPanel
+				id="panel-chinstrap"
+				labelledby="tab-chinstrap"
+				class="!flex !min-h-96 !flex-col !gap-4 !rounded-b-lg !border-2 !border-slate-300 !p-6"
+			>
+				<GraphicSpecies species="Chinstrap" />
+			</TabsPanel>
+		</Tabs>
+	</main>
+</Layout>
