@@ -1,0 +1,67 @@
+---
+import GraphicSpecies from "../components/GraphicSpecies.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+	<main class="mx-auto flex min-h-full max-w-6xl flex-col gap-8 px-4 py-8">
+		<header class="flex flex-col gap-4">
+			<a class="w-fit text-sm underline" href="/">Retour a l'accueil</a>
+			<h1 class="text-3xl font-bold">Les especes de pingouins</h1>
+			<nav aria-label="Navigation entre les especes" class="flex flex-wrap gap-3">
+				<a
+					class="menu-item rounded-md bg-sky-700 px-4 py-2 font-semibold text-white hover:bg-sky-800 [.active]:bg-red-200"
+					href="#adelie">Adelie</a
+				>
+				<a
+					class="menu-item rounded-md bg-sky-700 px-4 py-2 font-semibold text-white hover:bg-sky-800 [.active]:bg-red-200"
+					href="#gentoo">Gentoo</a
+				>
+				<a
+					class="menu-item rounded-md bg-sky-700 px-4 py-2 font-semibold text-white hover:bg-sky-800 [.active]:bg-red-200"
+					href="#chinstrap">Chinstrap</a
+				>
+			</nav>
+		</header>
+
+		<div class="flex snap-x snap-mandatory scroll-smooth overflow-x-auto rounded-lg border border-slate-300">
+			<section id="adelie" class="item flex min-w-full snap-start flex-col gap-4 p-6" aria-label="Graphique Adelie">
+				<GraphicSpecies species="Adelie" />
+			</section>
+			<section id="gentoo" class="item flex min-w-full snap-start flex-col gap-4 p-6" aria-label="Graphique Gentoo">
+				<GraphicSpecies species="Gentoo" />
+			</section>
+			<section id="chinstrap" class="item flex min-w-full snap-start flex-col gap-4 p-6" aria-label="Graphique Chinstrap">
+				<GraphicSpecies species="Chinstrap" />
+			</section>
+		</div>
+	</main>
+</Layout>
+
+<script>
+	const menuItems = document.querySelectorAll(".menu-item");
+	const items = document.querySelectorAll(".item");
+
+	console.log("menuItems", menuItems);
+	console.log("items", items);
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				const id = entry.target.getAttribute("id");
+				const menuItem = document.querySelector(`.menu-item[href="#${id}"]`);
+
+				if (entry.isIntersecting) {
+					menuItem?.classList.add("active");
+				} else {
+					menuItem?.classList.remove("active");
+				}
+			});
+		},
+		{ threshold: 0.5 },
+	);
+
+	items.forEach((item) => {
+		observer.observe(item);
+	});
+</script>
